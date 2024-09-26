@@ -6,6 +6,8 @@ Gonna use the README as a way to journal this whole experience, so let's just se
 ### Goal 1: Setup Project in VSCode
 - Shouldn't take too long...
 - ...and finished
-  - Had to unistall and reinstall `npx create-react-app`, but I made the app inside a temporary directory and then moved all of the contents into the main project directory.
+  - Had to unistall and reinstall `npx create-react-app`
+  - Made the React App inside a temporary directory, then moved all of those contents into the main project directory.
+  - Commit Name -> `Boiler Plate`
 
 
