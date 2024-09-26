@@ -16,6 +16,9 @@ Gonna use the README as a way to journal this whole experience, so let's just se
 - So we need to figure out how to use this XState library to fetch our desired data
   - installed using `npm i xstate @xstate/react`
   - figuring the xstate stuff out real quick hold on...
+  - Built a basic fetch state machine
+  - Worked out how to fetch from the Cat API 
+  - Must Create a variable to transform data to a local json object
 
 
 
