@@ -1,7 +1,6 @@
 import { createMachine } from "xstate"
 import { assign } from "xstate"
 
-
 // export const myMachine = createMachine({
 //         /** @xstate-layout N4IgpgJg5mDOIC5QAoC2BDAxgCwJYDswBKAOnwHsAXACXIDcwAnSAYgFkB5AVQGUBRDgDU+AJQDaABgC6iUAAdysXJVzl8skAA9EAJgBsJPXp0BWCQE4ALFcs6AzAHZLJgDQgAnoj0OSJk3rsARkCADj0Qh31ggF9otzQsPEJSbHomVk5eAS4AFUkZJBAFJRU1DW0EOwkSBwizf0DLQL1G0LdPBBMax0sIhwlAhwc7EOdYuJAKCDgNBJwCYg1i5VV1QoqAWmadEhCdaz1LPQk-fpM7dsQNkMCSc0cTRodA+6MQu1j4jHnksipaBjMCBLRQrMrrK7BSy7fbmQ7HU4nC4eLwGBxmCTGfRVQISd6fEBzJLEEipQGQEElVblRChcy+G76Ew6cyROyWS4IIw1DFYgIDPE6cbRIA */
 //         initial: "notHovered",  // initial state
@@ -25,12 +24,12 @@ import { assign } from "xstate"
 // );
 
 export const fetchMachine = createMachine({
-    /** @xstate-layout N4IgpgJg5mDOIC5QDMwBcDGALAdASwgBswBiAMQFEAVAYQAkBtABgF1FQAHAe1jzTy4A7diAAeiAIwB2AEw4AzAA4JMgCwA2KRICc6gKyK9egDQgAnpI04ZTPUxvztM-eomqAvu9OpMuDmEEIPEEoEgAlCgBlAHkAGQA1CmY2JBBuXn4hEXEEPVUpa215KSN1JlcJPXlTCwQ3JhxFRRKJJkUZPW1tCXVPb3RsHH9A4NCIgCkKGipkkXS+AWFUnLVFHHV1NSc27UVNbRNzRHkZeRxpPR6pJiY3RXk9PpAfQeQAQzxiCHJqelnU+aZJagHLyHQ4JiqLpOVRQmT3bQ1RAyWQQjr2CTyeS3CTKJ4vXCwACuGAwcFgyCJhB+tEYrDmPAWWWWiFUMjkG3R3RUB1U1SOCGUjU2djUuJ6kMeT0EXAgcBEBIZGUW2UQAFobBDyh0DIodjIdIokQg1ep1ripFCynsDqL8QNcARiEqmcCxMiCl1irCJDpWlI9TJjW49ApdgHdmU2eo9vbfEMAkEQi6gaqECi5HoY1IygGsZascHVKHHM1rgH1NpVG0ZHHXh8vimVSzcny0XZig9cRp+bV4Q1lM18pUpCV4XXCSSybAKVSm8yQYg8nINB1VE1Ic0msahbYRfCVLDLlJPJ4gA */
-    id: 'fetch',
+    /** @xstate-layout N4IgpgJg5mDOIC5QDMwBcDGALAdASwgBswBiAMQFEAVAYQAkBtABgF1FQAHAe1jzTy4A7diAAeiAIwBWAOw4JMqUyYBOCQDYAHAGZN6gCwAmADQgAnpP3qchpku0qr6iUYnaAvu9OpMuDmEEIPEEoEgAlCgBlAHkAGQA1CmY2JBBuXn4hEXEEKX05QxVtRSl1JmdpbVMLBBcmHE1NRQkmTUMpFTV1T290bBxkAEM8YghyanpkkXS+AWFUnO0JFRwmfU6VQ311wx0VasRDGUNV9qZDN20mCQlNCR6QH37YAFcMDDhYZBfCcdpGVjTHizLILRBGE7qdRnNQSQp5KrmRB3BrQpRbW4aNZSB5PPwBIIhcIUABSFBoVCmqRmmXmoByW00OChW02rRUehkKikBwQ2kM2nkzXUMmULh0OIegi4EDgIjxQIyc2yiAAtLZVuV2lJGuyLhzearrM4musynpuejcX1cARiIqQXSxIc5J1itsbmomDJNOdeS4pDgHE1NByykYtN0vI8bTh-IFglAHbSVQgjidSk0yj7tO7c-79IHgzJRT71I5WoZrb4BsNRsnlWDcvpBed7DJtFJblZETVdvU7qaZNIS1JdtXnm8PrAvj8G6D6Yg8icrO19Lr1z7NLyUXY0bs4dsuzJPJ4gA */
+    id: 'fetchMachine',
     initial: 'idle',
     context: {
-        results: undefined,
-        message: undefined
+        results: [],
+        message: ''
     },
 
     states:{
@@ -41,8 +40,7 @@ export const fetchMachine = createMachine({
         pending: {
             entry: ['fetchData'],
             on: {
-                RESOLVE: {target: 'successful', actions: ['setResults']},
-                REJECT: {target: 'failed', actions: ['setMessage']}
+                RESOLVE: {target: 'successful', actions: ['setResults']}
             }
         },
 
@@ -53,18 +51,17 @@ export const fetchMachine = createMachine({
         successful: {
             on: {FETCH: 'pending'}
         }
-    },  
-}, {
+    }
+
+    }, {
     actions: {
         setResults: assign((context, event) => ({
-            results: event.results
+            results: context.event.results
         })),
-
+        
         setMessage: assign((context, event) => ({
             message: event.message
         }))
-
-
     }
 
-})
+});
