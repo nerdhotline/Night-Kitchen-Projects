@@ -1,3 +1,10 @@
+const URL = "https://api.thecatapi.com/v1/images/search";
+const LIMIT = "1";
+const KEY = "live_3H0P5gLpYlRVspXYdZgndGhjKVNAnTR2Mv634ZpCjkAbdlW75qNWsgCKz7SaeJ9B";
+const HAS_BREEDS = "1";
+
+export const apiLink = `${URL}?limit=${LIMIT}&has_breeds=${HAS_BREEDS}&api_key=${KEY}`;
+
 export const catObject = (object) => ({
     adaptability: object.breeds[0].adaptability,
     affectionLevel: object.breeds[0].affection_level,

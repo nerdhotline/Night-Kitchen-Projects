@@ -1,57 +1,49 @@
-// import React, { useState } from 'react'
-// import {useEffect} from "react"
 import { useMachine } from '@xstate/react'
 import { fetchMachine } from "../Utility/myFirstMachine"
-import { catObject } from '../Utility/catObject'
+import { catObject, apiLink } from '../Utility/Utility';
+import { useState, useEffect } from 'react';
+import { Details } from './Details';
 
 export const Card = () => {
-  const [fetchState, sendToFetchMachine] = useMachine(fetchMachine.provide({
+  const [queryPull, setQueryPull] = useState(null);
+  const [state, sendState] = useMachine(fetchMachine.provide({
     actions: {
       fetchData: async (context, event) => {
-        const URL = "https://api.thecatapi.com/v1/images/search";
-        const LIMIT = "10";
-        const KEY = "live_3H0P5gLpYlRVspXYdZgndGhjKVNAnTR2Mv634ZpCjkAbdlW75qNWsgCKz7SaeJ9B";
-        const HAS_BREEDS = "1";
-        const apiLink = `${URL}?limit=${LIMIT}&has_breeds=${HAS_BREEDS}&api_key=${KEY}`;
-        const requestOptions = {
-            method: "GET",
-            redirect: "follow"
-        };
-
+        const requestOptions = { method: "GET", redirect: "follow"};
         try {
           const response = await fetch(apiLink, requestOptions);
           const data = await response.json();
           const temp = data.map(catObject);
-          sendToFetchMachine({type: 'RESOLVE', results: temp});
+          sendState({type: 'RESOLVE', results: temp});
           console.log(temp);
         } catch (error) {
           console.log(error)
         }
       }
     }
-  })
-  );
+  }));
 
-  // state.value                -> current state
-  // send({ type: TRANSITION }) -> transition between states
-  
+  useEffect(() => {
+    if (queryPull === null) {
+      state.context.results && state.context.results.map((obj) => setQueryPull(obj));
+    }
+  });
 
   return (
     <div>
-      {JSON.stringify(fetchState.value)}
+      {JSON.stringify(state.value)}
       <button
-        onClick = {() => {sendToFetchMachine({type: 'FETCH'})}}>
+        onClick = {() => {sendState({type: 'FETCH'})}}>
           Fetch
       </button>
-      {/* { (data === null) ? null : <p>{data}</p>} */}
 
-      {fetchState.matches('pending') ? <p>Loading</p> : null}
-      {fetchState.matches('successful') ? (
+      {state.matches('pending') ? <p>Loading</p> : null}
+      {state.matches('successful') ? (
         <ul>
-          {fetchState.context.results && fetchState.context.results.map((object) => <p>{JSON.stringify(object)}</p> )}
+          <Details catObj = {queryPull}/>
         </ul>
       ) : null}
-      {fetchState.matches('failed') ? <p>Failed</p> : null}
+      {state.matches('failed') ? <p>Failed</p> : null}
 
       
     </div>

@@ -1,5 +1,5 @@
-import { createMachine } from "xstate"
-import { assign } from "xstate"
+import { createMachine, assign } from "xstate"
+
 
 export const fetchMachine = createMachine({
     id: 'fetchMachine',
