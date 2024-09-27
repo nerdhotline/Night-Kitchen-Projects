@@ -25,45 +25,42 @@ export const Card = () => {
     redirect: "follow"
   };
 
-  const sql2HubspotLoan = (object) => ({
-    adaptability: adaptability
-    affection_level
-    alt_names
-    cfa_url 
-    child_friendly
-    country_code
-    country_codes
-    description 
-    dog_friendly
-    energy_level
-    experimental
-    grooming
-    hairless
-    health_issues
-    hypoallergenic
-    id
-    indoor
-    intelligence
-    lap
-    life_span
-    name  
-    natural
-    origin
-    rare
-    reference_image_id
-    rex
-    shedding_level
-    short_legs
-    social_needs
-    stranger_friendly
-    suppressed_tail
-    temperament
-    vcahospitals_url
-    vetstreet_url
-    vocalisation
-
-
-  
+  const catObject = (object) => ({
+    adaptability: object.adaptability,
+    affectionLevel: object.affection_level,
+    altNames: object.alt_names,
+    cfaURL: object.cfa_url,
+    childFriendly: object.child_friendly,
+    countryCode: object.country_code,
+    countryCodes: object.country_codes,
+    description: object.description,
+    dogFriendly: object.dog_friendly,
+    energyLevel: object.energy_level,
+    experimental: object.experimental,
+    grooming: object.grooming,
+    hairless: object.hairless,
+    healthIssues: object.health_issues,
+    hypoallergenic: object.hypoallergenic,
+    id: object.id,
+    indoor: object.indoor,
+    intelligence: object.intelligence,
+    lap: object.lap,
+    lifeSpan: object.life_span,
+    name: object.name,
+    natural: object.natural,
+    origin: object.origin,
+    rare: object.rare,
+    referenceImageID: object.reference_image_id,
+    rex: object.rex,
+    sheddingLevel: object.shedding_level,
+    shortLegs: object.short_legs,
+    socialNeeds: object.social_needs,
+    strangerFriendly: object.stranger_friendly,
+    suppressedTail: object.suppressed_tail,
+    temperament: object.temperament,
+    vcaHospitalsURL: object.vcahospitals_url,
+    vetStreetURL: object.vetstreet_url,
+    vocalisation: object.vocalisation
   });
 
 
