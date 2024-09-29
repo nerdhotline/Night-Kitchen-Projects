@@ -2,7 +2,9 @@ import { useMachine } from '@xstate/react'
 import { fetchMachine } from "../Utility/myFirstMachine"
 import { catObject, apiLink } from '../Utility/Utility';
 import { useState, useEffect } from 'react';
-import { Details } from './Details';
+// import { Details } from './Details';
+import './fetchButton.scss';
+
 
 export const Card = () => {
   const [queryPull, setQueryPull] = useState(null);
@@ -32,16 +34,17 @@ export const Card = () => {
   return (
     <div>
       {JSON.stringify(state.value)}
-      <button
+      <button className="fetchButton"
         onClick = {() => {sendState({type: 'FETCH'})}}>
           Fetch
       </button>
 
       {state.matches('pending') ? <p>Loading</p> : null}
       {state.matches('successful') ? (
-        <ul>
-          <Details catObj = {queryPull}/>
-        </ul>
+        // <ul>
+        //   <Details catObj = {queryPull}/>
+        // </ul>
+        <p>Success</p>
       ) : null}
       {state.matches('failed') ? <p>Failed</p> : null}
 
