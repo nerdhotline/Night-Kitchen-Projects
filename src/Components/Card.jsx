@@ -4,6 +4,7 @@ import { catObject, apiLink } from '../Utility/Utility';
 import { useState, useEffect } from 'react';
 // import { Details } from './Details';
 import './fetchButton.scss';
+import './Card.scss';
 
 
 export const Card = () => {
@@ -32,24 +33,27 @@ export const Card = () => {
   });
 
   return (
-    <div>
-      {JSON.stringify(state.value)}
-      <button className="fetchButton"
-        onClick = {() => {sendState({type: 'FETCH'})}}>
-          Fetch
-      </button>
+      <div className="card">
+        {JSON.stringify(state.value)}
 
-      {state.matches('pending') ? <p>Loading</p> : null}
-      {state.matches('successful') ? (
-        // <ul>
-        //   <Details catObj = {queryPull}/>
-        // </ul>
-        <p>Success</p>
-      ) : null}
-      {state.matches('failed') ? <p>Failed</p> : null}
+        <div className="fetchButton">
+          <button className="button"> 
+            onClick = {() => {sendState({type: 'FETCH'})}}>
+              Fetch
+          </button>
+        </div>
 
-      
-    </div>
+        {state.matches('pending') ? <p>Loading</p> : null}
+        {state.matches('successful') ? (
+          // <ul>
+          //   <Details catObj = {queryPull}/>
+          // </ul>
+          <p>Success</p>
+        ) : null}
+        {state.matches('failed') ? <p>Failed</p> : null}
+
+        
+      </div>
   );
 }
 

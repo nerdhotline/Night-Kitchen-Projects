@@ -1,0 +1,35 @@
+@mixin divStyle ($height, $width, $bg, $pos) {
+    
+   
+    width: 50%;
+     height: 50%;
+    
+}
+
+.AppStyle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+ 
+
+.card {
+    width: 75%;
+    height: 75%;
+    background-color: red;
+    border-radius: 1rem;
+}
+
+.flexButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.button {
+    width: 50%;
+    height: 50%;
+}
+

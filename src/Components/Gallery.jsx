@@ -8,5 +8,5 @@ export const Details = ({catObj}) => {
     });
 
    
-    return ();
+    return <div>temp</div>;
   }
